@@ -5,6 +5,8 @@ const outgoingConversationCallbackHandler = (req, res) => {
 
     const location = req.body.Location;
 
+    console.log("body", req.body);
+
     // Location helps to determine which action to perform.
     switch (location) {
         case 'GetProxyAddress': {
@@ -30,6 +32,7 @@ const handleGetProxyAddress = (req, res) => {
 
     const proxyAddress = getCustomerProxyAddress(channelName);
 
+    console.log("proxy address", proxyAddress);
     // In order to start a new conversation ConversationsApp need a proxy address
     // otherwise the app doesn't know from which number send a message to a customer
     if (proxyAddress) {
@@ -43,6 +46,7 @@ const handleGetProxyAddress = (req, res) => {
 };
 
 const getCustomerProxyAddress = (channelName) => {
+    console.log("config", config);
     if (channelName === 'whatsapp') {
         return config.twilio.whatsapp_number;
     } else {

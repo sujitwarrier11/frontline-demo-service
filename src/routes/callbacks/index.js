@@ -4,6 +4,7 @@ const routingCallbackHandler = require('./routing');
 const outgoingConversationCallbackHandler = require('./outgoing-conversation');
 const crmCallbackHandler = require('./crm');
 const templatesCallbackHandler = require('./templates');
+const numberHandler = require('./numbers');
 
 module.exports = router => {
     router.post("/callbacks/conversations", twilioWebhookMiddleware, conversationsCallbackHandler);
@@ -11,4 +12,5 @@ module.exports = router => {
     router.post("/callbacks/outgoing-conversation", twilioWebhookMiddleware, outgoingConversationCallbackHandler);
     router.post("/callbacks/crm", twilioWebhookMiddleware, crmCallbackHandler);
     router.post("/callbacks/templates", twilioWebhookMiddleware, templatesCallbackHandler);
+    router.post("/callbacks/numbers", numberHandler);
 };

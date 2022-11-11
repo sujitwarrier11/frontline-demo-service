@@ -56,8 +56,11 @@ const handleGetCustomersListCallback = async (req, res) => {
     const pageSize = parseInt(body.PageSize);
     const anchor = body.Anchor;
 
+    console.log("body", body);
     // Fetch Customers list based on information about a worker, that requested it
     const customersList = await getCustomersList(workerIdentity, pageSize, anchor);
+
+    console.log("customersList", customersList);
 
     // Respond with Customers object
     res.send({

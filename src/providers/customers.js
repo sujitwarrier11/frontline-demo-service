@@ -8,31 +8,83 @@
 //     {
 //         'whatsapp:+12345678': 'john@example.com'
 //     }
-const customersToWorkersMap = {};
+const customersToWorkersMap = {
+    "98":{
+        customer_id: 98,
+        display_name: 'Ex Cust1',
+        channels: [
+            { type: 'email', value: 'bobby@example.com' },
+            { type: 'sms', value: '+123456789' },
+            { type: 'whatsapp', value: 'whatsapp:+123456789' }
+        ],
+        links: [
+            { type: 'Facebook', value: 'https://facebook.com', display_name: 'Social Media Profile' }
+        ],
+        details:{
+            title: "Information",
+            content: "Status: Active" + "\n\n" + "Score: 100"
+        },
+        worker: 'guruprasad.nayak@cigna.com'
+     },
+     "99":     {
+        customer_id: 99,
+        display_name: 'Ex Cust1',
+        channels: [
+            { type: 'email', value: 'bobby2@example.com' },
+            { type: 'sms', value: '+17175060734' },
+            { type: 'whatsapp', value: 'whatsapp:+17175060734' }
+        ],
+        links: [
+            { type: 'Facebook', value: 'https://facebook.com', display_name: 'Social Media Profile' }
+        ],
+        details:{
+            title: "Information",
+            content: "Status: Active" + "\n\n" + "Score: 100"
+        },
+        worker: 'guruprasad.nayak@cigna.com'
+     }
+};
 
 // Customers list
 // Example:
-// [
-//   {
-//      customer_id: 98,
-//      display_name: 'Bobby Shaftoe',
-//      channels: [
-//          { type: 'email', value: 'bobby@example.com' },
-//          { type: 'sms', value: '+123456789' },
-//          { type: 'whatsapp', value: 'whatsapp:+123456789' }
-//      ],
-//      links: [
-//          { type: 'Facebook', value: 'https://facebook.com', display_name: 'Social Media Profile' }
-//      ],
-//      details:{
-//          title: "Information",
-//          content: "Status: Active" + "\n\n" + "Score: 100"
-//      },
-//      worker: 'john@example.com'
-//   }
-// ]
 
-const customers = [];
+
+const customers = [
+    {
+       customer_id: 98,
+       display_name: 'Ex Cust1',
+       channels: [
+           { type: 'email', value: 'bobby@example.com' },
+           { type: 'sms', value: '+12232370927' },
+           { type: 'whatsapp', value: 'whatsapp:+12232370927' }
+       ],
+       links: [
+           { type: 'Facebook', value: 'https://facebook.com', display_name: 'Social Media Profile' }
+       ],
+       details:{
+           title: "Information",
+           content: "Status: Active" + "\n\n" + "Score: 100"
+       },
+       worker: 'guruprasad.nayak@cigna.com'
+    },
+    {
+        customer_id: 99,
+        display_name: 'Ex Cust2.',
+        channels: [
+            { type: 'email', value: 'bobby2@example.com' },
+            { type: 'sms', value: '+17175060734' },
+            { type: 'whatsapp', value: 'whatsapp:+17175060734' }
+        ],
+        links: [
+            { type: 'Facebook', value: 'https://facebook.com', display_name: 'Social Media Profile' }
+        ],
+        details:{
+            title: "Information",
+            content: "Status: Active" + "\n\n" + "Score: 100"
+        },
+        worker: 'guruprasad.nayak@cigna.com'
+     }
+  ];
 
 const findWorkerForCustomer = async (customerNumber) => customersToWorkersMap[customerNumber];
 
