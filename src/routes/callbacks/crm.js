@@ -39,7 +39,12 @@ const handleGetCustomerDetailsByCustomerIdCallback = async (req, res) => {
             customer: {
                 customer_id: customerDetails.customer_id,
                 display_name: customerDetails.display_name,
-                channels: customerDetails.channels,
+                channels: Object.keys(customerDetails.channels)
+                .flatMap(type => customerDetails.channels[type]
+                    .map(value => ({
+                    type,
+                    value
+                }))),
                 links: customerDetails.links,
                 avatar: customerDetails.avatar,
                 details: customerDetails.details
