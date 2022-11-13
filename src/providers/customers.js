@@ -153,12 +153,12 @@ const getCustomerByNumber = async (customerNumber) => {
       }
 };
 
-const getCustomerById = async (worker, customerId) => {
+const getCustomerById = async (worker, customer_id) => {
     const params = {
         TableName: "customers",
         Key: {
           worker,
-          customer_id: customerId,
+          customer_id
         },
       };
       try{
