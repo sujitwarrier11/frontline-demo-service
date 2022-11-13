@@ -6,6 +6,7 @@ const conversationsCallbackHandler = async (req, res) => {
     res.locals.log(JSON.stringify(req.body));
 
     const eventType = req.body.EventType;
+    const worker = req.body.worker;
 
     switch (eventType) {
         case "onConversationAdd": {
@@ -24,7 +25,7 @@ const conversationsCallbackHandler = async (req, res) => {
             const isIncomingConversation = !!customerNumber
 
             if (isIncomingConversation) {
-                let customerDetails = await getCustomerByNumber(customerNumber) || {};
+                let customerDetails = await getCustomerByNumber(worker, customerNumber) || {};
 
                 const conversationProperties = {
                     friendly_name: customerDetails.display_name || customerNumber,
@@ -61,7 +62,7 @@ const conversationsCallbackHandler = async (req, res) => {
                     .get(participantSid)
                     .fetch();
 
-                const customerDetails = await getCustomerByNumber(customerNumber) || {};
+                const customerDetails = await getCustomerByNumber(worker, customerNumber) || {};
 
                 await setCustomerParticipantProperties(customerParticipant, customerDetails);
             }

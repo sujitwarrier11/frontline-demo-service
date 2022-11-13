@@ -31,7 +31,7 @@ const handleGetCustomerDetailsByCustomerIdCallback = async (req, res) => {
 
     // Fetch Customer Details based on his ID
     // and information about a worker, that requested that information
-    const customerDetails = await getCustomerById(customerId);
+    const customerDetails = await getCustomerById(workerIdentity, customerId);
 
     // Respond with Contact object
     res.send({
@@ -39,7 +39,12 @@ const handleGetCustomerDetailsByCustomerIdCallback = async (req, res) => {
             customer: {
                 customer_id: customerDetails.customer_id,
                 display_name: customerDetails.display_name,
-                channels: customerDetails.channels,
+                channels: Object.keys(customerDetails.channels)
+                .flatMap(type => customerDetails.channels[type]
+                    .map(value => ({
+                    type,
+                    value
+                }))),
                 links: customerDetails.links,
                 avatar: customerDetails.avatar,
                 details: customerDetails.details

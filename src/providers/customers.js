@@ -1,3 +1,6 @@
+import { QueryCommand } from "@aws-sdk/lib-dynamodb";
+import { queryTable } from "./repository";
+
 // For Inbound Routing: Map between customer address and worker identity
 // Used to determine to which worker a new conversation with a particular customer should be routed to.
 // {
@@ -100,7 +103,15 @@ const findRandomWorker = async () => {
 }
 
 const getCustomersList = async (worker, pageSize, anchor) => {
-    const workerCustomers = customers.filter(customer => customer.worker === worker);
+    const params = {
+        TableName: "customers",
+        ExpressionAttributeValues: {
+         ":w": worker
+        },
+        KeyConditionExpression: "worker = :w",
+      };
+    const data = await queryTable(params);
+    const workerCustomers = data.Items;
     const list = workerCustomers.map(customer => ({
         display_name: customer.display_name,
         customer_id: customer.customer_id,
@@ -121,11 +132,45 @@ const getCustomersList = async (worker, pageSize, anchor) => {
 };
 
 const getCustomerByNumber = async (customerNumber) => {
-    return customers.find(customer => customer.channels.find(channel => String(channel.value) === String(customerNumber)));
+
+    const params = {
+        TableName: "customers",
+        ExpressionAttributeValues: {
+         ":w": worker,
+         ":num": customerNumber
+        },
+        KeyConditionExpression: "worker = :w",
+        FilterExpression: "contains(channels.sms, :num) or contains(channels.email, :num) or contains(channels.whatsapp, :num)"
+      };
+      try {
+        const data = await queryTable(params);
+        console.log(data);
+        return data.Items[0];
+      }
+      catch(err) {
+        console.log("error", err);
+        throw err;
+      }
 };
 
-const getCustomerById = async (customerId) => {
-    return customers.find(customer => String(customer.customer_id) === String(customerId));
+const getCustomerById = async (worker, customer_id) => {
+    const params = {
+        TableName: "customers",
+        Key: {
+          worker,
+          customer_id
+        },
+      };
+      try{
+      var data = await getItem(params);
+      console.log("result", data);
+      return data.Item;
+      }
+      catch(err)
+      {
+        console.log("error", err);
+        throw err;
+      }
 };
 
 module.exports = {
