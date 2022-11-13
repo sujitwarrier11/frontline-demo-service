@@ -1,4 +1,4 @@
-const { QueryCommand } = require("@aws-sdk/lib-dynamodb");
+const { QueryCommand, GetCommand } = require("@aws-sdk/lib-dynamodb");
 const { ddbDocClient } = require('./dynamo-document-client');
 
 
