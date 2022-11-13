@@ -1,6 +1,6 @@
-const createApp = require('./create-app');
-const config = require('./config');
-const routes = require('./routes');
+const createApp = require('./src/create-app');
+const config = require('./src/config');
+const routes = require('./src/routes');
 
 const app = createApp(config);
 routes(app);
