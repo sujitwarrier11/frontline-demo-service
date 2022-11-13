@@ -12,7 +12,7 @@ const  getItem = async (params) => {
       }
 }
 
-const queryTable = async () => {
+const queryTable = async (params) => {
     try {
       const data = await ddbDocClient.send(new QueryCommand(params));
       return data;
