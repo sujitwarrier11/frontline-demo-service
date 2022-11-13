@@ -1,6 +1,7 @@
-const createApp = require('./create-app');
-const config = require('./config');
-const routes = require('./routes');
+const serverless = require('serverless-http');
+const createApp = require('./src/create-app');
+const config = require('./src/config');
+const routes = require('./src/routes');
 
 const app = createApp(config);
 routes(app);
@@ -25,3 +26,6 @@ app.listen(config.port, () => {
   console.info(`Application started at http://localhost:${config.port}`);
   logRoutes(config.port);
 });
+
+
+module.exports.handler = serverless(app);

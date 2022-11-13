@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.1252.0",
-    "jest": "^27.4.7"
+    "jest": "^27.4.7",
+    "serverless-http": "^3.1.0"
   }
 }
