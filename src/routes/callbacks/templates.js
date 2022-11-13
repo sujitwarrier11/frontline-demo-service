@@ -26,7 +26,7 @@ const handleGetTemplatesByCustomerIdCallback = async (req, res) => {
     const customerId = body.CustomerId;
     const conversationSid = body.ConversationSid;
 
-    const customerDetails = await getCustomerById(customerId);
+    const customerDetails = await getCustomerById(workerIdentity, customerId);
 
     if (!customerDetails) {
         return res.status(404).send("Customer not found");

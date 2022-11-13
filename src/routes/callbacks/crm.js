@@ -31,7 +31,7 @@ const handleGetCustomerDetailsByCustomerIdCallback = async (req, res) => {
 
     // Fetch Customer Details based on his ID
     // and information about a worker, that requested that information
-    const customerDetails = await getCustomerById(customerId);
+    const customerDetails = await getCustomerById(workerIdentity, customerId);
 
     // Respond with Contact object
     res.send({
