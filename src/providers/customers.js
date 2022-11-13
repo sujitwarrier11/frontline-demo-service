@@ -1,5 +1,4 @@
-import { QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { queryTable } from "./repository";
+const{ queryTable } = require("./repository");
 
 // For Inbound Routing: Map between customer address and worker identity
 // Used to determine to which worker a new conversation with a particular customer should be routed to.

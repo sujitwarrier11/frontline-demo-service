@@ -8,13 +8,14 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "start": "nodemon src/index.js"
+    "start": "nodemon index.js"
   },
   "engines": {
     "node": ">=13"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.208.0",
+    "@aws-sdk/lib-dynamodb": "^3.209.0",
     "axios": "^0.26.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

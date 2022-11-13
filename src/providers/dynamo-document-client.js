@@ -1,5 +1,5 @@
-import { DynamoDBDocumentClient} from "@aws-sdk/lib-dynamodb";
-import { ddbClient } from './dynamo';
+const { DynamoDBDocumentClient} = require("@aws-sdk/lib-dynamodb");
+const { ddbClient } = require('./dynamo');
 
 
 const marshallOptions = {
@@ -21,4 +21,4 @@ const translateConfig = { marshallOptions, unmarshallOptions };
 // Create the DynamoDB Document client.
 const ddbDocClient = DynamoDBDocumentClient.from(ddbClient, translateConfig);
 
-export { ddbDocClient };
+module.exports = { ddbDocClient };

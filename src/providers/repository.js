@@ -1,8 +1,8 @@
-import { QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDocClient } from './dynamo-document-client';
+const { QueryCommand } = require("@aws-sdk/lib-dynamodb");
+const { ddbDocClient } = require('./dynamo-document-client');
 
 
-export const  getItem = async (params) => {
+const  getItem = async (params) => {
     try {
         const data = await ddbDocClient.send(new GetCommand(params));
         return data;
@@ -12,7 +12,7 @@ export const  getItem = async (params) => {
       }
 }
 
-export const queryTable = async () => {
+const queryTable = async () => {
     try {
       const data = await ddbDocClient.send(new QueryCommand(params));
       return data;
@@ -20,3 +20,8 @@ export const queryTable = async () => {
       console.log("Error", err);
     }
   };
+
+  module.exports = {
+    getItem,
+    queryTable
+  }
